@@ -1,0 +1,45 @@
+Format: 1.8
+Date: Wed, 03 Oct 2018 08:41:27 +0000
+Source: re2c
+Binary: re2c
+Built-For-Profiles: nobiarch nocheck nodoc
+Architecture: amd64
+Version: 1.1.1-1
+Distribution: unstable
+Urgency: medium
+Maintainer: JCF Ploemen (jcfp) <linux@jcf.pm>
+Changed-By: JCF Ploemen (jcfp) <linux@jcf.pm>
+Description:
+ re2c       - tool for generating fast C-based recognizers
+Changes:
+ re2c (1.1.1-1) unstable; urgency=medium
+ .
+   * New upstream release.
+   * Bump Standards-Version to 4.2.1 (from 4.1.0; no further changes).
+   * Set compat level and debhelper build-dep version to 11.
+   * Patches:
+     + refresh 02.
+     + add 03_backported_fix_upstream_issue_215.
+   * Remove trailing whitespaces from d/{changelog,control}.
+   * Copyright:
+     + convert to machine-readable format.
+     + add entries for some of the test files.
+   * Tests: add initial autopkgtest, using upstream test suite.
+   * Lintian: override license-problem-php-license and
+     override_dh_auto_test-does-not-check-DEB_BUILD_OPTIONS: both false
+     positives.
+   * Rules: remove overrides for dh_installexamples (excluded files no
+     longer shipped upstream) and dh_installchangelogs (file is found
+     automagically now).
+Checksums-Sha1:
+ ba2629d73792e7b3b19a8422eb70c314d5cedbe3 2880468 re2c-dbgsym_1.1.1-1_amd64.deb
+ 4a77b6771b024fd31bf9f0cdb4413b714c3755ae 5519 re2c_1.1.1-1_amd64.buildinfo
+ 36be5ae66cb64df7bb7ab21419f8ba788ac32ee8 342820 re2c_1.1.1-1_amd64.deb
+Checksums-Sha256:
+ 187ffa32596931e35628b536e437157270a6cd147b39eb10d08620616037fb7e 2880468 re2c-dbgsym_1.1.1-1_amd64.deb
+ 3dd66459bc9bed664b9abdf170a40b5d8341357f58ad951abbfc83caec50eff9 5519 re2c_1.1.1-1_amd64.buildinfo
+ 173bae77ba7d45cf1f5c8fca5fb79d644d25c5255c0236ad13e34555c564786b 342820 re2c_1.1.1-1_amd64.deb
+Files:
+ 732277a0f9a459ba4282d02fb5559709 2880468 debug optional re2c-dbgsym_1.1.1-1_amd64.deb
+ c4c446322a8d7e7bfc882db264bf2e85 5519 devel optional re2c_1.1.1-1_amd64.buildinfo
+ 2e6bcf30e746436ba5a0c4cd946e9765 342820 devel optional re2c_1.1.1-1_amd64.deb

@@ -1,0 +1,112 @@
+# fix trivial typos resulting in lintian hits
+--- a/bootstrap/doc/re2c.1
++++ b/bootstrap/doc/re2c.1
+@@ -98,7 +98,7 @@
+ In this mode simple \fB/*!re2c */\fP blocks are not allowed
+ and exactly one \fB/*!rules:re2c */\fP block must be present.
+ The rules are saved and used by every \fB/*!use:re2c */\fP block that follows (which may add rules of their own).
+-This option allows to reuse the same set of rules with different configurations.
++This option allows one to reuse the same set of rules with different configurations.
+ .TP
+ .B \fB\-s \-\-nested\-ifs\fP
+ Use nested \fBif\fP statements instead of \fBswitch\fP statements in conditional jumps.
+@@ -409,7 +409,7 @@
+ .SS RULES
+ .sp
+ Rules consist of a regular expression followed by a user\-defined action:
+-a block of C/C++ code that is executed in case of sucessful match.
++a block of C/C++ code that is executed in case of successful match.
+ Action can be either an arbitrary block of code enclosed in curly braces \fB{\fP and \fB}\fP
+ or a block of code without curly braces preceded with \fB:=\fP and ended with a newline that is not followed by a whitespace.
+ .sp
+@@ -440,7 +440,7 @@
+ than nested \fBif\fP statements and bit masks.
+ .TP
+ .B \fBre2c:cond:divider = \(aq/* *********************************** */\(aq;\fP
+-Allows to customize the divider for condition blocks. One can use \fB@@\fP to insert condition name.
++Allows one to customize the divider for condition blocks. One can use \fB@@\fP to insert condition name.
+ .TP
+ .B \fBre2c:cond:divider@cond = @@;\fP
+ Specifies the placeholder that will be replaced with condition name in \fBre2c:cond:divider\fP\&.
+@@ -452,7 +452,7 @@
+ Specifies the placeholder that will be replaced with condition label in \fBre2c:cond:goto\fP\&.
+ .TP
+ .B \fBre2c:cond:goto = \(aqgoto @@;\(aq;\fP
+-Allows to customize \fBgoto\fP statements used with \fB:=>\fP style rules.
++Allows one to customize \fBgoto\fP statements used with \fB:=>\fP style rules.
+ One can use \fB@@\fP to insert the condition name.
+ .TP
+ .B \fBre2c:condprefix = yyc;\fP
+@@ -655,7 +655,7 @@
+ use. Requires a numeric value greater than or equal to zero.
+ .TP
+ .B \fBre2c:labelprefix = \(aqyy\(aq;\fP
+-Allows to change the prefix of numbered
++Allows one to change the prefix of numbered
+ labels. The default is \fByy\fP\&. Can be set any string that is valid in
+ a label name.
+ .TP
+@@ -688,14 +688,14 @@
+ \fB/*!getstate:re2c*/\fP comment.
+ .TP
+ .B \fBre2c:tags:expression = \(aq@@\(aq;\fP
+-Allows to customize the way re2c addresses tag variables:
++Allows one to customize the way re2c addresses tag variables:
+ by default it emits expressions of the form \fByyt<N>\fP,
+ but this might be inconvenient if tag variables are defined as fields in a struct,
+ or for any other reason require special accessors.
+ For example, setting \fBre2c:tags:expression = p\->@@\fP will result in \fBp\->yyt<N>\fP\&.
+ .TP
+ .B \fBre2c:tags:prefix = \(aqyyt\(aq;\fP
+-Allows to override prefix of tag variables.
++Allows one to override prefix of tag variables.
+ .TP
+ .B \fBre2c:variable:yyaccept = yyaccept;\fP
+ Overrides the name of the \fByyaccept\fP variable.
+@@ -868,7 +868,7 @@
+ The default mode of operation in re2c is a "pull" model, where the lexer "pulls" more input whenever it needs it.
+ However, this mode of operation assumes that the lexer is the owner of the parsing loop, and that may not always be convenient.
+ .sp
+-Storable state is useful exactly for situations like that: it allows to construct
++Storable state is useful exactly for situations like that: it allows one to construct
+ lexers that work in a "push" model, where data is fed to the lexer chunk by chunk.
+ When the lexer needs more input, it stores its state and returns to the caller.
+ Later, when more input becomes available, it resumes operations exactly where it stopped.
+@@ -895,7 +895,7 @@
+ .SH CONDITIONS
+ .sp
+ \fIConditions\fP are enabled with \fB\-c\fP \fB\-\-conditions\fP\&.
+-This option allows to encode multiple interrelated lexers within the same re2c block.
++This option allows one to encode multiple interrelated lexers within the same re2c block.
+ .sp
+ Each lexer corresponds to a single \fIcondition\fP\&.
+ It starts with a label of the form \fByyc_name\fP,
+@@ -915,7 +915,7 @@
+ After matching some rule of this \fIcondition\fP,
+ lexer may either transfer control flow back to the entry code (after executing the associated action and optionally setting another \fIcondition\fP with \fB=>\fP),
+ or use \fB:=>\fP shortcut and transition directly to the start label of another \fIcondition\fP (skipping the action and the entry code).
+-Configuration \fBre2c:cond:goto\fP allows to change the default behavior.
++Configuration \fBre2c:cond:goto\fP allows one to change the default behavior.
+ .sp
+ Syntactically each rule must be preceded with a list of comma\-separated \fIcondition\fP names or a wildcard \fB*\fP
+ enclosed in angle brackets \fB<\fP and \fB>\fP\&.
+@@ -941,7 +941,7 @@
+ .UNINDENT
+ .sp
+ Another special form of rules with an empty condition list \fB<>\fP and no regular expression
+-allows to specify an "entry condition" that can be used to execute code before entering the lexer.
++allows one to specify an "entry condition" that can be used to execute code before entering the lexer.
+ It is semantically equivalent to a condition with number zero, name \fB0\fP and an empty regular expression.
+ .INDENT 0.0
+ .IP \(bu 2
+--- a/bootstrap/src/conf/help.cc
++++ b/bootstrap/src/conf/help.cc
+@@ -63,7 +63,7 @@
+ "              allowed and exactly one /*!rules:re2c */ block must be  present.\n"
+ "              The  rules are saved and used by every /*!use:re2c */ block that\n"
+ "              follows (which may add rules of their own).  This option  allows\n"
+-"              to reuse the same set of rules with different configurations.\n"
++"              one to reuse the same set of rules with different configurations.\n"
+ "\n"
+ "       -s --nested-ifs\n"
+ "              Use  nested if statements instead of switch statements in condi‐\n"

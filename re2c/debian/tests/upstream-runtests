@@ -1,0 +1,17 @@
+#!/bin/sh
+
+set -e -u
+
+# run initial build steps to generate the test script
+dh_autoreconf 2>&1
+dh_auto_configure 2>&1
+
+# examples are also used for testing
+cp --verbose --archive run_tests.sh examples/ test/ "$AUTOPKGTEST_TMP"
+
+cd "$AUTOPKGTEST_TMP"
+
+# symlink the packaged re2c executable
+ln --verbose --symbolic /usr/bin/re2c "$AUTOPKGTEST_TMP"
+
+bash ./run_tests.sh

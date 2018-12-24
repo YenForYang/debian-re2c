@@ -1,0 +1,12 @@
+Package: re2c-dbgsym
+Source: re2c
+Version: 1.1.1-1
+Auto-Built-Package: debug-symbols
+Architecture: amd64
+Maintainer: JCF Ploemen (jcfp) <linux@jcf.pm>
+Installed-Size: 2983
+Depends: re2c (= 1.1.1-1)
+Section: debug
+Priority: optional
+Description: debug symbols for re2c
+Build-Ids: 2f64b4c033b26404be26aac44e8a0bc03058169d

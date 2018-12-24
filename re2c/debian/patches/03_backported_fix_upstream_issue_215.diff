@@ -1,0 +1,41 @@
+From a439ca0828d6c1a8baa6ada3f3985499610c7e86 Mon Sep 17 00:00:00 2001
+From: Ulya Trofimovich <skvadrik@gmail.com>
+Date: Tue, 4 Sep 2018 20:27:40 +0100
+Subject: [PATCH] Fixed bug #215 "A memory read overrun issue in s_to_n32_unsafe.cc".
+
+The error was in the code of the test itself: the special case of zero
+wasn't handled correctrly by the function that prepares input data for
+the test. As a result, zero-length input string was passed to the test,
+which is unexpected: the tested function is an "unsafe" one (as the
+name suggests) and is meant to be used on an already validated input.
+---
+ re2c/src/test/s_to_n32_unsafe/test.cc | 14 +++++++++-----
+ 1 file changed, 9 insertions(+), 5 deletions(-)
+
+diff --git a/re2c/src/test/s_to_n32_unsafe/test.cc b/re2c/src/test/s_to_n32_unsafe/test.cc
+index 01743924..ba4acaa0 100644
+--- a/src/test/s_to_n32_unsafe/test.cc
++++ b/src/test/s_to_n32_unsafe/test.cc
+@@ -11,11 +11,15 @@ static const uint32_t DIGITS = 256;
+ // no terminating null as we don't need it
+ static char * u64_to_s_fastest_ever (uint64_t u, char * s)
+ {
+-    while (u > 0)
+-    {
+-        const uint64_t d = u % 10 + '0';
+-        *--s = static_cast<char> (d);
+-        u /= 10;
++    if (u == 0) {
++        *--s = '0';
++    }
++    else {
++        while (u > 0) {
++            const uint64_t d = u % 10 + '0';
++            *--s = static_cast<char> (d);
++            u /= 10;
++        }
+     }
+     return s;
+ }
+-- 
+2.11.0

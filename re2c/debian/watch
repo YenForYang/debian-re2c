@@ -1,0 +1,2 @@
+version=3
+https://github.com/skvadrik/re2c/releases .*/re2c-(\d\S*)\.tar\.gz
